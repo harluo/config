@@ -1,3 +1,3 @@
-module github.com/heluon/config
+module github.com/harluo/config
 
 go 1.24
