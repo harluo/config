@@ -88,6 +88,8 @@ func (g *Getter) detectPath() (err error) {
 	list.Directory("conf")
 	list.Directory("configuration")
 	list.Directory(".") // 当前目录
+
+	// Unix类操作系统目录
 	list.Directory("conf.d")
 	list.Directory("config.d")
 	list.Directory("configuration.d")
