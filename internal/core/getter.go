@@ -93,14 +93,11 @@ func (g *Getter) detectPath() (err error) {
 	list.Directory("configuration.d")
 	list.Directory("etc")
 
-	if 0 != len(g.config.Loaders) { // 当有加载器时，需要去掉默认参数
-		list.Reset()
-	}
 	// 限制扩展名
 	for _, loader := range g.config.Loaders {
 		extensions := loader.Extensions()
 		if 0 != len(extensions) {
-			list.Extension(extensions[0], extensions[1:]...)
+			list.Extension(extensions[0], extensions[1:]...).Reset() // 当有加载器时，需要去掉默认参数
 		}
 	}
 
