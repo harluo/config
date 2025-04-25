@@ -1,4 +1,4 @@
-package config
+package kernel
 
 const (
 	ContextFilepath Context = iota + 1
