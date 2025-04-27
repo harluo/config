@@ -19,7 +19,7 @@ type Xml struct {
 	targets map[runtime.Pointer]bool
 }
 
-func NewXml() *Xml {
+func newXml() *Xml {
 	return &Xml{
 		targets: make(map[runtime.Pointer]bool),
 	}

@@ -6,6 +6,9 @@ import (
 
 func init() {
 	di.New().Get().Dependency().Puts(
-		newDefault,
+		newPaths,
+		newGetter,
+		newLoader,
+		newEnvironment,
 	).Build().Apply()
 }

@@ -1,7 +1,9 @@
 package config
 
 import (
-	"github.com/harluo/config/internal/core"
+	_ "github.com/harluo/config/internal/core"
+
+	"github.com/harluo/config/internal/kernel"
 )
 
-type Getter = core.Getter
+type Getter = kernel.Getter

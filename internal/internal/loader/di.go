@@ -1,4 +1,4 @@
-package core
+package loader
 
 import (
 	"github.com/harluo/di"
@@ -6,6 +6,7 @@ import (
 
 func init() {
 	di.New().Get().Dependency().Puts(
-		newDefault,
+		newJson,
+		newXml,
 	).Build().Apply()
 }

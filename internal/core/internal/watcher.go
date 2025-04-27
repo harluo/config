@@ -1,15 +1,14 @@
-package core
+package internal
 
 import (
 	"github.com/fsnotify/fsnotify"
-	"github.com/harluo/config/internal/core/internal"
 )
 
 type Watcher struct {
-	changer internal.Changer
+	changer Changer
 }
 
-func NewWatch(changer internal.Changer) *Watcher {
+func NewWatch(changer Changer) *Watcher {
 	return &Watcher{
 		changer: changer,
 	}

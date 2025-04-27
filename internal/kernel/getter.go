@@ -1,5 +1,9 @@
 package kernel
 
+import (
+	"github.com/harluo/config/internal/runtime"
+)
+
 type Getter interface {
-	Get(key string) string
+	Get(config runtime.Pointer) error
 }

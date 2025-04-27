@@ -1,4 +1,4 @@
-package core
+package internal
 
 import (
 	"github.com/harluo/di"
@@ -6,6 +6,6 @@ import (
 
 func init() {
 	di.New().Get().Dependency().Puts(
-		newDefault,
+		newFiller,
 	).Build().Apply()
 }

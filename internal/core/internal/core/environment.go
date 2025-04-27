@@ -5,16 +5,18 @@ import (
 	"strings"
 
 	"github.com/goexl/gox"
-	"github.com/harluo/config/internal/core/internal/core/internal"
+	"github.com/harluo/config/internal/core/internal/internal"
 	"github.com/harluo/config/internal/runtime"
 )
 
 type Environment struct {
-	// 将环境变量转换成带层级的映射
+	// 无字段
 }
 
-func NewEnvironment() *Environment {
-	return new(Environment)
+func newEnvironment() *Environment {
+	return &Environment{
+		// 无字段
+	}
 }
 
 func (e *Environment) Process(config runtime.Pointer) (err error) {

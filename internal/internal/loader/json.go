@@ -19,7 +19,7 @@ type Json struct {
 	jsonc *internal.Jsonc
 }
 
-func NewJson() *Json {
+func newJson() *Json {
 	return &Json{
 		jsonc: internal.NewJsonc(),
 	}
