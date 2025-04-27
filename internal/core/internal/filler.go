@@ -32,38 +32,38 @@ func newFiller(get get.Filler) *Filler {
 	}
 }
 
-func (l *Filler) Load(target runtime.Pointer) (err error) {
-	for _, path := range l.paths.Get() {
-		err = l.load(path, target)
+func (f *Filler) Fill(target runtime.Pointer) (err error) {
+	for _, path := range f.paths.Get() {
+		err = f.load(path, target)
 	}
 
 	return
 }
 
-func (l *Filler) load(path string, target runtime.Pointer) (err error) {
-	if ctx, has, lce := l.loadLocalContext(path); nil != lce {
+func (f *Filler) load(path string, target runtime.Pointer) (err error) {
+	if ctx, has, lce := f.loadLocalContext(path); nil != lce {
 		err = lce
 	} else {
-		err = l.fill(ctx, target, has)
+		err = f.fill(ctx, target, has)
 	}
 
 	return
 }
 
-func (l *Filler) Wrote() {
-	for _, target := range l.targets {
+func (f *Filler) Wrote() {
+	for _, target := range f.targets {
 		newTarget := reflect.New(reflect.TypeOf(target)).Elem().Interface()
-		if le := l.Load(newTarget); nil != le {
+		if le := f.Fill(newTarget); nil != le {
 			// todo
 		} else if !reflect.DeepEqual(target, newTarget) { // 如果配置有变化
 			// todo
 		}
 	}
 }
-func (l *Filler) loadLocalContext(path string) (ctx context.Context, populated bool, err error) {
-	if bytes, rfe := l.read(path); nil != rfe {
+func (f *Filler) loadLocalContext(path string) (ctx context.Context, populated bool, err error) {
+	if bytes, rfe := f.read(path); nil != rfe {
 		err = rfe
-	} else if eval, ee := envsubst.Eval(string(bytes), l.getter.Get); nil != ee {
+	} else if eval, ee := envsubst.Eval(string(bytes), f.getter.Get); nil != ee {
 		err = ee
 	} else {
 		ctx = context.Background()
@@ -75,7 +75,7 @@ func (l *Filler) loadLocalContext(path string) (ctx context.Context, populated b
 	return
 }
 
-func (l *Filler) read(path string) (bytes []byte, err error) {
+func (f *Filler) read(path string) (bytes []byte, err error) {
 	if "" != path {
 		bytes, err = os.ReadFile(path)
 	}
@@ -83,10 +83,10 @@ func (l *Filler) read(path string) (bytes []byte, err error) {
 	return
 }
 
-func (l *Filler) fill(localContext context.Context, target runtime.Pointer, populated bool) (err error) {
+func (f *Filler) fill(localContext context.Context, target runtime.Pointer, populated bool) (err error) {
 	networkContext := context.Background()
-	modules := l.modules(target)
-	for _, loader := range l.loader.Get() {
+	modules := f.modules(target)
+	for _, loader := range f.loader.Get() {
 		if loader.Local() && !populated {
 			continue
 		}
@@ -109,13 +109,13 @@ func (l *Filler) fill(localContext context.Context, target runtime.Pointer, popu
 	}
 
 	if nil == err {
-		l.targets = append(l.targets, target)
+		f.targets = append(f.targets, target)
 	}
 
 	return
 }
 
-func (l *Filler) modules(target runtime.Pointer) (modules []string) {
+func (f *Filler) modules(target runtime.Pointer) (modules []string) {
 	typeOfTarget := reflect.TypeOf(target)
 	if reflect.Ptr == typeOfTarget.Kind() {
 		typeOfTarget = typeOfTarget.Elem()

@@ -1,11 +1,12 @@
-package internal
+package get
 
 import (
+	"github.com/harluo/config/internal/core/internal"
 	"github.com/harluo/config/internal/core/internal/core"
 	"github.com/harluo/di"
 )
 
-type Getter struct {
+type Default struct {
 	di.Get
 
 	Paths       *core.Paths
@@ -13,5 +14,5 @@ type Getter struct {
 	Getter      *core.Getter
 	Loader      *core.Loader
 
-	Filler *Filler
+	Filler *internal.Filler
 }

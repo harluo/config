@@ -6,6 +6,7 @@ import (
 	"github.com/goexl/xiren"
 	"github.com/harluo/config/internal/core/internal"
 	"github.com/harluo/config/internal/core/internal/core"
+	"github.com/harluo/config/internal/core/internal/get"
 	"github.com/harluo/config/internal/kernel"
 	"github.com/harluo/config/internal/runtime"
 )
@@ -21,7 +22,7 @@ type Default struct {
 	filler *internal.Filler
 }
 
-func newDefault(get internal.Getter) kernel.Getter {
+func newDefault(get get.Default) kernel.Getter {
 	return &Default{
 		paths: get.Paths,
 
@@ -43,7 +44,7 @@ func (g *Default) Get(target runtime.Pointer) (err error) {
 }
 
 func (g *Default) fill(target runtime.Pointer) (err error) {
-	if le := g.filler.Load(target); nil != le { // 从路径中加载数据
+	if le := g.filler.Fill(target); nil != le { // 从路径中加载数据
 		err = le
 	}
 
