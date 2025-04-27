@@ -13,8 +13,6 @@ import (
 	"github.com/harluo/config/internal/kernel"
 )
 
-var _ kernel.Loader = (*Json)(nil)
-
 type Json struct {
 	jsonc *internal.Jsonc
 }

@@ -12,9 +12,8 @@ import (
 )
 
 type Default struct {
-	path  string
-	paths *core.Paths
-
+	path        *core.Path
+	paths       *core.Paths
 	environment *core.Environment
 	getter      *core.Getter
 	loader      *core.Loader
@@ -24,12 +23,13 @@ type Default struct {
 
 func newDefault(get get.Default) kernel.Getter {
 	return &Default{
-		paths: get.Paths,
-
+		path:        get.Path,
+		paths:       get.Paths,
 		environment: get.Environment,
 		getter:      get.Getter,
 		loader:      get.Loader,
-		filler:      get.Filler,
+
+		filler: get.Filler,
 	}
 }
 
@@ -65,9 +65,9 @@ func (g *Default) fill(target runtime.Pointer) (err error) {
 }
 
 func (g *Default) detectPath() (err error) {
-	list := gfx.List().Filepath(g.path) // 加入默认从命令行和配置项而来的配置文件
-	list.Limit().File().Build()         // 限制只探测文件
-	list.Filename("*")                  // 探测所有可能的文件
+	list := gfx.List().Filepath(g.path.Get()) // 加入默认从命令行和配置项而来的配置文件
+	list.Limit().File().Build()               // 限制只探测文件
+	list.Filename("*")                        // 探测所有可能的文件
 	// 配置所有可能的配置目录
 	list.Directory("config")
 	list.Directory("conf")

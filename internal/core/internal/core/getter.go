@@ -1,6 +1,8 @@
 package core
 
 import (
+	_ "github.com/harluo/config/internal/internal/mapper" // 预加载内部映射器
+
 	"github.com/harluo/config/internal/core/internal/core/internal/get"
 	"github.com/harluo/di"
 )

@@ -9,6 +9,7 @@ import (
 type Default struct {
 	di.Get
 
+	Path        *core.Path
 	Paths       *core.Paths
 	Environment *core.Environment
 	Getter      *core.Getter

@@ -7,5 +7,6 @@ import (
 func init() {
 	di.New().Get().Dependency().Puts(
 		newDefault,
+		newArguments,
 	).Build().Apply()
 }

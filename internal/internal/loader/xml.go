@@ -13,8 +13,6 @@ import (
 	"github.com/harluo/config/internal/runtime"
 )
 
-var _ kernel.Loader = (*Xml)(nil)
-
 type Xml struct {
 	targets map[runtime.Pointer]bool
 }
