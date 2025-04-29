@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	di.New().Get().Dependency().Puts(
+	di.New().Instance().Put(
 		newDefault,
 		func(config *argument.Config) put.Arguments {
 			return put.Arguments{

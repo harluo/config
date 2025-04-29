@@ -19,17 +19,17 @@ func newLoader() *Loader {
 }
 
 func (*Loader) Get() (loaders []kernel.Loader) {
-	di.New().Get().Dependency().Get(func(get get.Loaders) {
+	di.New().Instance().Get(func(get get.Loaders) {
 		loaders = get.Loaders
-	}).Build().Build().Apply()
+	}).Build().Apply()
 
 	return
 }
 
 func (*Loader) Foreach(each func(loader kernel.Loader)) {
-	di.New().Get().Dependency().Get(func(get get.Loaders) {
+	di.New().Instance().Get(func(get get.Loaders) {
 		for _, loader := range get.Loaders {
 			each(loader)
 		}
-	}).Build().Build().Apply()
+	}).Build().Apply()
 }

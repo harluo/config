@@ -14,14 +14,14 @@ func newGetter() *Getter {
 }
 
 func (g *Getter) Get(key string) (value string) {
-	di.New().Get().Dependency().Get(func(get get.Mappers) {
+	di.New().Instance().Get(func(get get.Mappers) {
 		for _, mapper := range get.Mappers {
 			value = mapper.Get(key)
 			if "" != value { // 及时回退
 				break
 			}
 		}
-	}).Build().Build().Apply()
+	}).Build().Apply()
 
 	return
 }

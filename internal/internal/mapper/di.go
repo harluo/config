@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-	di.New().Get().Dependency().Puts(
+	di.New().Instance().Put(
 		newEnvironment,
 		func(environment *Environment) internal.Put {
 			return internal.Put{

@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-	di.New().Get().Dependency().Puts(
+	di.New().Instance().Put(
 		newJson,
 		newXml,
 		func(json *Json, xml *Xml) internal.Put {
