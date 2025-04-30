@@ -9,7 +9,6 @@ require (
 	github.com/goexl/exception v0.0.3
 	github.com/goexl/gfx v0.2.8
 	github.com/goexl/gox v1.9.2
-	github.com/goexl/log v0.0.9
 	github.com/goexl/mengpo v0.2.6
 	github.com/goexl/structer v0.1.9
 	github.com/goexl/xiren v0.0.8
@@ -24,6 +23,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.26.0 // indirect
 	github.com/goexl/baozheng v0.0.1 // indirect
+	github.com/goexl/log v0.0.9 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
