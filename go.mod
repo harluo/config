@@ -12,7 +12,7 @@ require (
 	github.com/goexl/mengpo v0.2.6
 	github.com/goexl/structer v0.1.9
 	github.com/goexl/xiren v0.0.8
-	github.com/harluo/boot v1.7.1
+	github.com/harluo/boot v1.7.2
 	github.com/harluo/di v0.0.5
 )
 
