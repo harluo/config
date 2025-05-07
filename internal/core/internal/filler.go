@@ -96,11 +96,11 @@ func (f *Filler) fill(localContext context.Context, target runtime.Pointer, popu
 			ctx = networkContext
 		}
 
-		value := make(map[string]any)
-		if loaded, le := loader.Load(ctx, &value, modules); nil != le {
+		newToLoad := reflect.New(reflect.TypeOf(target).Elem()).Elem().Interface() // 创建一份新的值，用于从配置文件中加载
+		if loaded, le := loader.Load(ctx, &newToLoad, modules); nil != le {
 			err = le
-		} else if loaded && 0 != len(value) { // 确实加载了配置数据
-			err = internal.NewDecoder(&value).Decode(target)
+		} else if loaded { // 确实加载了配置数据
+			err = internal.NewDecoder(newToLoad).Decode(target)
 		}
 
 		if nil != err {

@@ -11,6 +11,7 @@ import (
 	"github.com/harluo/config/internal/internal/loader/internal"
 	"github.com/harluo/config/internal/internal/loader/internal/constant"
 	"github.com/harluo/config/internal/kernel"
+	"github.com/harluo/config/internal/runtime"
 )
 
 type Json struct {
@@ -35,7 +36,7 @@ func (*Json) Extensions() []string {
 	}
 }
 
-func (j *Json) Load(ctx context.Context, target *map[string]any, _ []string) (loaded bool, err error) {
+func (j *Json) Load(ctx context.Context, target runtime.Pointer, _ []string) (loaded bool, err error) {
 	if path, pok := ctx.Value(kernel.ContextFilepath).(string); !pok {
 		err = exception.New().Message("未指定配置文件路径").Field(field.New("loader", "json")).Build()
 	} else if bytes, bok := ctx.Value(kernel.ContextBytes).([]byte); !bok {
@@ -47,7 +48,7 @@ func (j *Json) Load(ctx context.Context, target *map[string]any, _ []string) (lo
 	return
 }
 
-func (j *Json) load(path *string, bytes *[]byte, target *map[string]any) (loaded bool, err error) {
+func (j *Json) load(path *string, bytes *[]byte, target runtime.Pointer) (loaded bool, err error) {
 	loadable := false
 	ext := strings.ToLower(filepath.Ext(*path))
 	if constant.ExtensionJson5 == ext || constant.ExtensionJsonc == ext {

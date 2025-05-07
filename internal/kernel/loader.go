@@ -2,6 +2,8 @@ package kernel
 
 import (
 	"context"
+
+	"github.com/harluo/config/internal/runtime"
 )
 
 // Loader 加载器
@@ -14,5 +16,5 @@ type Loader interface {
 
 	// Load 加载配置时调用
 	// !不使用原始配置类型是为了方便后续处理，不能随意改变方法签名中配置的类型
-	Load(ctx context.Context, target *map[string]any, modules []string) (loaded bool, err error)
+	Load(ctx context.Context, target runtime.Pointer, modules []string) (loaded bool, err error)
 }

@@ -9,17 +9,24 @@ import (
 )
 
 type Decoder struct {
-	from *map[string]any
+	from runtime.Pointer
 }
 
-func NewDecoder(from *map[string]any) *Decoder {
+func NewDecoder(from runtime.Pointer) *Decoder {
 	return &Decoder{
 		from: from,
 	}
 }
 
-func (d *Decoder) Decode(target runtime.Pointer) error {
-	return structer.Copy().From(d.from).To(target).Mapper(d.mapper).Build().Apply()
+func (d *Decoder) Decode(target runtime.Pointer) (err error) {
+	middle := make(map[string]any) // !通过中间亦是的引入，防止零值被复制到了目标变量
+	if tme := structer.Copy().From(d.from).To(&middle).Mapper(d.mapper).Build().Apply(); nil != tme {
+		err = tme
+	} else if fme := structer.Copy().From(middle).To(target).Mapper(d.mapper).Build().Apply(); nil != fme {
+		err = fme
+	}
+
+	return
 }
 
 func (d *Decoder) mapper(key string, field string) (mapped bool) {

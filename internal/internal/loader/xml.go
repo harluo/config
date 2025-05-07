@@ -33,7 +33,7 @@ func (*Xml) Extensions() []string {
 	}
 }
 
-func (x *Xml) Load(ctx context.Context, target *map[string]any, _ []string) (loaded bool, err error) {
+func (x *Xml) Load(ctx context.Context, target runtime.Pointer, _ []string) (loaded bool, err error) {
 	if path, pok := ctx.Value(kernel.ContextFilepath).(string); !pok {
 		err = exception.New().Message("未指定配置文件路径").Field(field.New("loader", "xml")).Build()
 	} else if bytes, bok := ctx.Value(kernel.ContextBytes).([]byte); !bok {
@@ -45,7 +45,7 @@ func (x *Xml) Load(ctx context.Context, target *map[string]any, _ []string) (loa
 	return
 }
 
-func (x *Xml) load(path *string, bytes *[]byte, target *map[string]any) (loaded bool, err error) {
+func (x *Xml) load(path *string, bytes *[]byte, target runtime.Pointer) (loaded bool, err error) {
 	loadable := false
 	if constant.ExtensionXml == strings.ToLower(filepath.Ext(*path)) {
 		loadable = true
