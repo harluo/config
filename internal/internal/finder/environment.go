@@ -1,14 +1,15 @@
-package mapper
+package finder
 
 import (
 	"github.com/goexl/env"
+	"github.com/harluo/config/internal/kernel"
 )
 
 type Environment struct {
 	// 无字段
 }
 
-func newEnvironment() *Environment {
+func newEnvironment() kernel.Finder {
 	return &Environment{
 		// 无字段
 	}
