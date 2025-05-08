@@ -5,8 +5,8 @@ import (
 	"github.com/harluo/di"
 )
 
-type Mappers struct {
+type Finders struct {
 	di.Get
 
-	Mappers []kernel.Mapper `group:"mappers"`
+	Finders []kernel.Finder `group:"finders"`
 }

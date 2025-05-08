@@ -8,5 +8,5 @@ import (
 type Put struct {
 	di.Put
 
-	Environment kernel.Mapper `group:"mappers"`
+	Environment kernel.Finder `group:"mappers"`
 }

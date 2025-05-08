@@ -14,6 +14,6 @@ func newEnvironment() *Environment {
 	}
 }
 
-func (*Environment) Get(key string) string {
+func (*Environment) Find(key string) string {
 	return env.Get(key)
 }
