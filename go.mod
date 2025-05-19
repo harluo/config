@@ -11,8 +11,8 @@ require (
 	github.com/goexl/gox v1.9.2
 	github.com/goexl/mengpo v0.3.1
 	github.com/goexl/structer v0.1.9
-	github.com/goexl/xiren v0.0.8
-	github.com/harluo/boot v1.7.3
+	github.com/goexl/xiren v0.0.9
+	github.com/harluo/boot v1.7.4
 	github.com/harluo/di v0.0.5
 )
 
