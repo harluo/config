@@ -8,5 +8,5 @@ import (
 type Arguments struct {
 	di.Put
 
-	Config boot.Argument `group:"arguments"`
+	Config boot.Argument `group:"settings"`
 }
