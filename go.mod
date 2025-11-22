@@ -12,7 +12,7 @@ require (
 	github.com/goexl/mengpo v0.3.1
 	github.com/goexl/structer v0.1.9
 	github.com/goexl/xiren v0.0.9
-	github.com/harluo/boot v1.7.6
+	github.com/harluo/boot v1.7.8
 	github.com/harluo/di v0.0.5
 )
 
@@ -44,7 +44,7 @@ require (
 	github.com/xrash/smetrics v0.0.0-20250705151800-55b8f293f342 // indirect
 	github.com/zs5460/art v0.3.0 // indirect
 	go.uber.org/dig v1.19.0 // indirect
-	golang.org/x/crypto v0.44.0 // indirect
+	golang.org/x/crypto v0.45.0 // indirect
 	golang.org/x/sys v0.38.0 // indirect
 	golang.org/x/text v0.31.0 // indirect
 )
