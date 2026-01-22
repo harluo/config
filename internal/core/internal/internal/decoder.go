@@ -19,11 +19,13 @@ func NewDecoder(from runtime.Pointer) *Decoder {
 }
 
 func (d *Decoder) Decode(target runtime.Pointer) (err error) {
-	middle := make(map[string]any) // !通过中间亦是的引入，防止零值被复制到了目标变量
-	if tme := structer.Copy().From(d.from).To(&middle).Mapper(d.mapper).Build().Apply(); nil != tme {
-		err = tme
-	} else if fme := structer.Copy().From(middle).To(target).Mapper(d.mapper).Build().Apply(); nil != fme {
-		err = fme
+	builder := structer.Copy().Mapper(d.mapper)
+
+	environments := make(map[string]any) // !通过中间亦是的引入，防止零值被复制到了目标变量
+	if fee := builder.From(d.from).To(&environments).Build().Apply(); nil != fee {
+		err = fee
+	} else if ete := builder.From(environments).To(target).Build().Apply(); nil != ete {
+		err = ete
 	}
 
 	return
