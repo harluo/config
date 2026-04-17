@@ -89,7 +89,6 @@ func (g *Default) detectPath() (err error) {
 
 	if paths := list.Build().All(); 0 != len(paths) {
 		g.paths.Add(paths[0], paths[1:]...)
-		// TODO g.getLogger().Debug("使用配置文件进行配置加载", field.New("paths", *g.paths))
 	}
 
 	return
